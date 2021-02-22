@@ -11,10 +11,10 @@ import com.pbg.hibernate.demo.entity.Student;
 
 /* ----- Hibernate Advanced Mapping - 'Bidirectional 'One-to-One Mapping demo app  ----- */
 
-/* ----- View the Instructor Obj using Instructor_Detail Obj in a Bidirectional Manner ----- */
+/* ----- Delete the Instructor Obj using Instructor_Detail Obj in a Bidirectional Manner ----- */
 
 
-public class GetInstructorDetailDemo {
+public class DeleteInstructorDetailDemo {
 
 	public static void main(String[] args) {
 		
@@ -45,6 +45,11 @@ public class GetInstructorDetailDemo {
 			
 			//	Print the Associated Instructor
 			System.out.println("The Associated Instructor : " + tempInstructorDetail.getInstructor());		
+			
+			//	Now let's delete the instructor details :
+			System.out.println("\n\nDeleteing tempInstructorDetail (Bidirectional) : " + tempInstructorDetail);
+			
+			session.delete(tempInstructorDetail);
 			
 			//	Commit transaction
 			session.getTransaction().commit();
