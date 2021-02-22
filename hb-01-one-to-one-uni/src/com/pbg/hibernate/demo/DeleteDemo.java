@@ -4,22 +4,25 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.pbg.hibernate.demo.entity.Instructor;
+import com.pbg.hibernate.demo.entity.InstructorDetail;
 import com.pbg.hibernate.demo.entity.Student;
 
 
-/* ----- Hibernate working app Demo ----- */
+/* ----- Hibernate Advanced Mapping - One-to-One Mapping demo app  ----- */
 
 /* ----- CRUD - Creating Objects ----- */
 
 
-public class CreateStudentDemo {
+public class DeleteDemo {
 
 	public static void main(String[] args) {
 		
 		//	Create Session Factory		(-	Refer Note 1 below)
 		SessionFactory factory = new Configuration()
 								.configure("hibernate.cfg.xml")		// Now not needed to specify the file name here if you give this default file name
-								.addAnnotatedClass(Student.class)
+								.addAnnotatedClass(Instructor.class)
+								.addAnnotatedClass(InstructorDetail.class)
 								.buildSessionFactory();
 		
 		
@@ -28,18 +31,31 @@ public class CreateStudentDemo {
 
 		
 		try {
-			//	Use the session object to save java object
-			//	Create a student object
-			System.out.println("Creating new student object ..");
 			
-			Student tempStudent = new Student("Pranav", "Ganore" , "pranavbganore@gmail.com");
+			//	Create the Objects
+			Instructor tempInstructor = new Instructor("Pranav","Ganore","pranavbganore@gmail.com");
+			
+			InstructorDetail tempInstructorDetail = new InstructorDetail(
+										"https://www.youtube.com/channel/UC-CxH7xvNYYkx_KTXkYa-ow",
+										"Singing");
+			
+//			Instructor tempInstructor = new Instructor("Aniket","Chandak","achandak@gmail.com");
+//			
+//			InstructorDetail tempInstructorDetail = new InstructorDetail(
+//										"https://www.youtube.com/channel/chandukaka",
+//										"Eating");
+			
+			//	Associate the objects
+			tempInstructor.setInstructorDetail(tempInstructorDetail);
 			
 			//	Start a Transaction
 			session.beginTransaction();
 			
-			//	Save the student object
-			System.out.println("Saving the Student .... ");
-			session.save(tempStudent);
+			//	Save the Instructor
+			System.out.println("Saving Instructor : " + tempInstructor);
+			session.save(tempInstructor);
+			//	Note: This will ALSO save the InstructorDetail Objects because of the CascadeType.ALL
+			
 			
 			//	Commit transaction
 			session.getTransaction().commit();

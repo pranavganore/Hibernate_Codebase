@@ -14,8 +14,6 @@ import javax.persistence.Table;
 @Table(name="instructor_detail")
 public class InstructorDetail {
 	
-
-	
 	//	Define the fields
 	//	Annotate the fields with database column names
 
@@ -38,7 +36,7 @@ public class InstructorDetail {
 	}
 
 	public InstructorDetail(String youtubeChannel, String hobby) {
-		super();
+		//super();
 		this.youtubeChannel = youtubeChannel;
 		this.hobby = hobby;
 	}

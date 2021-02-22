@@ -44,12 +44,12 @@ public class Instructor {
 		
 	}
 
-	public Instructor(String firstName, String lastName, String email, InstructorDetail instructorDetail) {
-		super();
+	public Instructor(String firstName, String lastName, String email/*, InstructorDetail instructorDetail*/) {
+		//super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
-		this.instructorDetail = instructorDetail;
+		//this.instructorDetail = instructorDetail;
 	}
 	
 	//	Generate Getter/Setter methods
