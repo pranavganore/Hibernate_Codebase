@@ -14,7 +14,7 @@ import com.pbg.hibernate.demo.entity.Student;
 /* ----- CRUD - Deleting Objects ----- */
 
 
-public class CreateDemo {
+public class DeleteDemoApp {
 
 	public static void main(String[] args) {
 		

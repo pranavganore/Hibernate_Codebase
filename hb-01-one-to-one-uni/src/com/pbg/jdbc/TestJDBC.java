@@ -9,7 +9,7 @@ public class TestJDBC {
 		 
 		// Creating a basic connection to the mySQL database and testing it
 		
-		String jdbcURL = "jdbc:mysql://localhost:3306/hb-01-one-to-one-uni?useSSL=false";
+		String jdbcURL = "jdbc:mysql://localhost:3306/hb-01-one-to-one?useSSL=false";
 		String user = "hbstudent";
 		String pwd = "hbstudent";
 		
