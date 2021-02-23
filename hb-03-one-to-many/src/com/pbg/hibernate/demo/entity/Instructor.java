@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/* ----- Hibernate Advanced Mapping - One-to-Many Mapping demo app  ----- */
+
 
 //Annotate the class as an entity and map to database table
 @Entity
