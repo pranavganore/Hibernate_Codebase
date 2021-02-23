@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-/* ----- Hibernate Advanced Mapping - One-to-Many Mapping demo app  ----- */
+/* ----- Hibernate Advanced Mapping - One-to-Many Unidirectional Mapping demo app  ----- */
 
 
 //Annotate the class as an entity and map to database table
@@ -45,8 +46,9 @@ public class Instructor {
 	@JoinColumn(name="instructor_detail_id")
 	private InstructorDetail instructorDetail;
 	
-	//	Create a collection to hold multiple courses associated. **One-to-Many
-	@OneToMany(mappedBy="instructor",	//	mappedBby Refers to "instructor" property in "course" class
+	//	Create a collection to hold multiple courses associated. **One-to-Many-Uni
+	@OneToMany(fetch=FetchType.LAZY,
+			mappedBy="instructor",	//	mappedBby Refers to "instructor" property in "course" class
 			cascade= {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
 	private List<Course> courses;
 	

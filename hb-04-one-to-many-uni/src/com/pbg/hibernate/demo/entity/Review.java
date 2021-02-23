@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/* ----- Hibernate Advanced Mapping - One-to-Many Unidirectional Mapping demo   ----- */
+
+
 @Entity
 @Table(name="review")
 public class Review {
