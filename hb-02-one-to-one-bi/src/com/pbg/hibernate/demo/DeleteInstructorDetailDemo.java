@@ -49,6 +49,9 @@ public class DeleteInstructorDetailDemo {
 			//	Now let's delete the instructor details :
 			System.out.println("\n\nDeleteing tempInstructorDetail (Bidirectional) : " + tempInstructorDetail);
 			
+			//	Refer to note 2 below IMP if you want to reove the association
+			
+			
 			session.delete(tempInstructorDetail);
 			
 			//	Commit transaction
@@ -87,3 +90,23 @@ public class DeleteInstructorDetailDemo {
  * 		-	Short-lived object
  * 		-	Retrieved from SessionFactory
  */
+
+/* 
+ *	Note 2 :  Disabling cascade.ALL in order not to delete the Instructor when we delete InstructorDemo
+ *	How to do it - > 
+ *
+ * 	Step 1 : In order to achieve this simply manage the cascade in a fine grained manner instead of allowing ALL 
+ * 		cascades. in InstructorDetail.java class 
+ * 	:: Use this code on line 88-89 in InstructorDetail.java class (replace)
+ * 	
+ * 	@OneToOne(mappedBy="instructorDetail", cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )	// See Note 1 below IMP
+ * 	private Instructor instructor; 
+ * 
+ * 	Step 2 : Remove the association i.e Break the bidirectional Link in your main app ('DeleteInstructorDetailDemo.java')
+ * 				(Refer to slide 222 & 223 UDEMY Chad Darby for details)
+ * 	:: Add this code before you do session.delete();(add on line 53) in your main app ('DeleteInstructorDetailDemo.java')
+ * 	//	Remove the Associated object reference
+ *	//	Break the Bi-directional link
+ *	tempInstructorDetail.getInstructor().setInstructorDetail(null);
+ *
+ * */

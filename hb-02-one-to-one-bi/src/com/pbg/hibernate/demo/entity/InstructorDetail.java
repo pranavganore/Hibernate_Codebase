@@ -85,7 +85,7 @@ public class InstructorDetail {
 	//	Add New field for instructor (also need to add getters and setters)
 	//	Add @OneToOne Annotation
 	
-	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)
+	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL)	// See Note 1 below IMP
 	private Instructor instructor; 
 	
 	public Instructor getInstructor() {
@@ -97,3 +97,24 @@ public class InstructorDetail {
 	}
 
 }
+
+
+/* 
+ *	Note 1 :  Disabling cascade.ALL in order not to delete the Instructor when we delete InstructorDemo
+ *	How to do it - > 
+ *
+ * 	Step 1 : In order to achieve this simply manage the cascade in a fine grained manner instead of allowing ALL 
+ * 		cascades.  
+ * 	:: Use this code on line 88-89 (replace)
+ * 	
+ * 	@OneToOne(mappedBy="instructorDetail", cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH} )	// See Note 1 below IMP
+ * 	private Instructor instructor; 
+ * 
+ * 	Step 2 : Remove the association i.e Break the bidirectional Link in your main app ('DeleteInstructorDetailDemo.java')
+ * 				(Refer to slide 222 & 223 UDEMY Chad Darby for details)
+ * 	:: Add this code before you do session.delete();(add on line 53) in your main app ('DeleteInstructorDetailDemo.java')
+ * 	//	Remove the Associated object reference
+ *	//	Break the Bi-directional link
+ *	tempInstructorDetail.getInstructor().setInstructorDetail(null);
+ *
+ * */
